@@ -21,10 +21,10 @@ This project provides a command-line interface (CLI) to chat with the LLaMA2 mod
     cd langchain
     ```
 
-2. Run the setup script to install all dependencies and start CLI:
+2. Run the start script to install all dependencies and start CLI:
 
     ```sh
-    ./setup.sh
+    ./start.sh
     ```
 
 ## Usage
