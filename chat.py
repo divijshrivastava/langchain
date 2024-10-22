@@ -1,3 +1,8 @@
+import warnings
+
+# Ignore all warnings
+warnings.filterwarnings("ignore")
+
 from langchain_ollama.llms import OllamaLLM
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 
@@ -23,18 +28,29 @@ def chat_with_llama():
     """
     llm = setup_llama()
     print("\nChat with Llama 2 (type 'quit' to exit)")
-    
+
+    introduction_done = False
+
     while True:
+        
+        if(introduction_done == False):
+            introduction_done = True
+            prompt = f"""[INST] Please introduce yourself [/INST]"""
+            print("\nLlama 2: ", end="")
+            response = llm.invoke(prompt)
+            print(response)
+            continue
+
+
         user_input = input("\nYou: ")
         if user_input.lower() == 'quit':
             break
-        
         # Adding prompt template for better responses
         prompt = f"""[INST] {user_input} [/INST]"""
         
         # Stream the response
         print("\nLlama 2: ", end="")
-        response = llm(prompt)
+        response = llm.invoke(prompt)
 
 
 if __name__ == "__main__":
