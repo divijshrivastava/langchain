@@ -87,6 +87,12 @@ environment_setup() {
     fi
 }
 
+setup_python_environment() {
+    python3 -m venv .venv
+    source .venv/bin/activate
+    pip install -r requirements.txt
+}
+
 # Settingup environment
 environment_setup
 # Main script
@@ -107,10 +113,13 @@ fi
 # Test llama2
 test_llama2
 
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
+
+# Setup Python environment and install requirements
+setup_python_environment
+
+# clear the terminal
 
 clear
+
 echo "Starting chat with your personal AI assistant!"
 python3 chat.py
